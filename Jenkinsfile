@@ -1,10 +1,40 @@
-<html>
-  <head>
-    <title>pipele webhook</title>
-  </head>
-  <body>
-    <p>piple build 1</p>
-    <p>pipeline build 2 updated</p>
-    <h1>Jenkins Pipeline Demo - Version 2</h1>
-  </body>
-</html>
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Checking out pipeline'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building pipeline'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing pipeline'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                echo 'Packaging pipeline'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Successfully built'
+        }
+
+        failure {
+            echo 'Build failed'
+        }
+    }
+}
